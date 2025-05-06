@@ -24,7 +24,7 @@ fi
 sudo apt update
 sudo apt install -y build-essential wget
 
-conda env create -f env.yml
+conda env create -f env.yaml
 conda activate webshop
 
 # Install Python Dependencies
