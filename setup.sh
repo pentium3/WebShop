@@ -21,8 +21,17 @@ if [ -z "$data" ]; then
   helpFunction
 fi
 
+sudo apt update
+sudo apt install -y build-essential wget
+
+conda env create -f env.yml
+conda activate webshop
+
 # Install Python Dependencies
 pip install -r requirements.txt;
+pip install Werkzeug==2.2.2
+pip install --force-reinstall typing-extensions==4.5.0
+pip install -U numpy
 
 # Install Environment Dependencies via `conda`
 conda install -c pytorch faiss-cpu;
@@ -46,6 +55,7 @@ cd ..
 
 # Download spaCy large NLP model
 python -m spacy download en_core_web_lg
+python -m spacy download en_core_web_sm
 
 # Build search engine index
 cd search_engine
@@ -56,18 +66,20 @@ mkdir -p indexes
 cd ..
 
 # Create logging folder + samples of log data
-get_human_trajs () {
-  PYCMD=$(cat <<EOF
-import gdown
-url="https://drive.google.com/drive/u/1/folders/16H7LZe2otq4qGnKw_Ic1dkt-o3U9Zsto"
-gdown.download_folder(url, quiet=True, remaining_ok=True)
-EOF
-  )
-  python -c "$PYCMD"
-}
-mkdir -p user_session_logs/
+#get_human_trajs () {
+#  PYCMD=$(cat <<EOF
+#import gdown
+#url="https://drive.google.com/drive/u/1/folders/16H7LZe2otq4qGnKw_Ic1dkt-o3U9Zsto"
+#gdown.download_folder(url, quiet=True, remaining_ok=True)
+#EOF
+#  )
+#  python -c "$PYCMD"
+#}
+#mkdir -p user_session_logs/
 cd user_session_logs/
 echo "Downloading 50 example human trajectories..."
-get_human_trajs
+unzip all_trajs.zip
+mv all_trajs/* ./
+rm -r all_trajs
 echo "Downloading example trajectories complete"
 cd ..
