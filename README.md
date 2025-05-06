@@ -46,7 +46,18 @@ Our code is implemented in Python. To setup, do the following:
 ```sh
 > git clone https://github.com/princeton-nlp/webshop.git webshop
 ```
-4. Create a virtual environment using [Anaconda](https://anaconda.org/anaconda/python) and activate it
+4. Create a virtual environment using [Anaconda](https://www.anaconda.com/docs/getting-started/miniconda/install#linux) and activate it
+
+(optional) install miniconda on aws
+
+```
+mkdir -p ~/data0/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/data0/miniconda3/miniconda.sh
+bash ~/data0/miniconda3/miniconda.sh -b -u -p ~/data0/miniconda3
+source ~/data0/miniconda3/bin/activate
+conda init --all
+```
+
 ```sh
 > conda create -n webshop python=3.8.13
 > conda activate webshop
