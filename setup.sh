@@ -34,6 +34,7 @@ pip install --force-reinstall typing-extensions==4.5.0
 pip install -U numpy
 
 # Install Environment Dependencies via `conda`
+conda install mkl=2021
 conda install -c pytorch faiss-cpu;
 conda install -c conda-forge openjdk=11;
 
